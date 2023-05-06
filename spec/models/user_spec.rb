@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   subject do
     User.create do |user|
-      user.name = 'Abdimulhin Adan'
+      user.name = 'yash'
       user.photo = 'https://images.unsplash.com/photo-1533167649158-6d508895b680?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80'
-      user.bio = 'Am a kenyan'
+      user.bio = 'Am a full stack developer'
       user.posts_counter = 0
     end
   end
@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'name should be exist' do
-    expect(subject.name).to eql('Abdimulhin Adan')
+    expect(subject.name).to eql('yash')
   end
   it 'posts_counter should be an integer' do
     subject.posts_counter = 'string'
