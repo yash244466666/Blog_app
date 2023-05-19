@@ -1,38 +1,45 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject do
-    User.create do |user|
-      user.name = 'yash'
-      user.photo = 'https://images.unsplash.com/photo-1533167649158-6d508895b680?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80'
-      user.bio = 'Am a full stack developer'
-      user.posts_counter = 0
-    end
+  user1 = User.new(name: 'Yash', photo: 'https://picsum.photos/200/300', bio: 'I am Yash', posts_counter: 4)
+  user2 = User.new(name: 'Ahmet', photo: 'https://picsum.photos/200/300', bio: 'I am Ahmet', posts_counter: -2)
+  user3 = User.new(name: '', photo: 'https://picsum.photos/200/300', bio: 'I am Ahmet', posts_counter: 3)
+
+  it 'check user1s name not be blank' do
+    expect(user1.name).to_not eq('')
   end
 
-  it 'should be valid' do
-    expect(subject).to be_valid
+  it 'check user1s photo is a string' do
+    expect(user1.photo).to eq('https://picsum.photos/200/300')
   end
 
-  it 'name should be exist' do
-    expect(subject.name).to eql('yash')
-  end
-  it 'posts_counter should be an integer' do
-    subject.posts_counter = 'string'
-    expect(subject).to_not be_valid
+  it 'check user1s bio is a string' do
+    expect(user1.bio).to eq('I am Yash')
   end
 
-  it 'posts_counter should be an integer' do
-    subject.posts_counter = 1
-    expect(subject).to be_valid
+  it 'check user1s name shorter than 250 characters' do
+    expect(user1.name.length < 250).to eq(true)
   end
 
-  it 'posts_counter should be greater than or equal to 0' do
-    subject.posts_counter = -1
-    expect(subject).to_not be_valid
+  it 'check user1s posts_counter be integer' do
+    expect(user1.posts_counter >= 0).to eq(true)
   end
 
-  it 'method recent_posts returns the 3 most recent posts' do
-    expect(subject.recent_posts).to eq(subject.posts.order(updated_at: :desc).limit(3))
+  it 'check user2s posts_counter lower than 0' do
+    expect(user2).to_not be_valid
+  end
+
+  it 'check user3s name not be blank' do
+    expect(user3).to_not be_valid
+  end
+
+  it 'need to bring users1s last three posts' do
+    user1.save
+    @post1 = user1.posts.create!(title: 'Yash', text: 'Yash', comments_counter: 2, likes_counter: 2)
+    @post2 = user1.posts.create!(title: 'Yash1', text: 'Yash1', comments_counter: 2, likes_counter: 2)
+    @post3 = user1.posts.create!(title: 'Yash2', text: 'Yash2', comments_counter: 2, likes_counter: 2)
+    @post4 = user1.posts.create!(title: 'Yash3', text: 'Yash3', comments_counter: 2, likes_counter: 2)
+
+    expect(user1.recent_three_posts).to eq([@post4, @post3, @post2])
   end
 end
