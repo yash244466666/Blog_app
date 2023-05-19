@@ -1,60 +1,63 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:user) { User.create(name: 'Abdimulhin', photo: 'https://picsum.photos/id/4/5000/3333', bio: 'test user', posts_counter: 0) }
-  subject { Post.create(author: user, title: 'testing post', comments_counter: 0, likes_counter: 0) }
+  user1 = User.new(name: 'Yash', photo: 'https://picsum.photos/200/300', bio: 'I am Yash', posts_counter: 4)
+  post1 = Post.new(author: user1, title: 'PostTitle1', text: ' Post text 1', comments_counter: 6, likes_counter: 5)
 
-  it 'has title' do
-    expect(subject.title).to eq('testing post')
-  end
-  it 'has valid attributs' do
-    expect(subject).to be_valid
+  it 'check post1 title presence validation' do
+    post1.title = ''
+    expect(post1).to_not be_valid
   end
 
-  it 'has no valid comment_counter that is less than 0' do
-    subject.comments_counter = -1
-    expect(subject).to_not be_valid
+  it 'check post1s title length higher than 250 validation' do
+    post1.title = 'qwe' * 100
+    expect(post1).to_not be_valid
   end
 
-  it 'has no valid with like_counter' do
-    subject.likes_counter = -1
-    expect(subject).to_not be_valid
+  it 'check post1s comments_counter only_integer validation' do
+    post1.comments_counter = 'qwe'
+    expect(post1).to_not be_valid
   end
 
-  it 'has valid like_count' do
-    subject.likes_counter = 1
-    expect(subject).to be_valid
+  it 'check post1s comments_counter greater_than_or_equal_to: 0 validation' do
+    post1.comments_counter = -2
+    expect(post1).to_not be_valid
   end
 
-  it 'has valid comment_conunt' do
-    subject.comments_counter = 1
-    expect(subject).to be_valid
+  it 'check post1s likes_counter only_integer validation' do
+    post1.likes_counter = 'qwe'
+    expect(post1).to_not be_valid
   end
 
-  it 'title has a maximum length of 250 characters' do
-    expect(subject.title.length).to be <= 250
+  it 'check post1s likes_counter greater_than_or_equal_to: 0 validation' do
+    post1.likes_counter = -2
+    expect(post1).to_not be_valid
   end
 
-  it 'method recent_comments returns the 5 most recent comments' do
-    expect(subject.recent_comments).to eq(subject.comments.order(updated_at: :desc).limit(5))
+  it 'check post1s update_post_counter incrementation' do
+    user1.posts_counter = 0
+    user1.save
+
+    post = Post.create!(author: user1, title: 'title', text: ' Post text 1', comments_counter: 0, likes_counter: 0)
+
+    post.update_post_counter
+    post.update_post_counter
+
+    expect(user1.posts_counter).to eq(3)
   end
 
-  it 'method update_posts_counter increments posts_counter by 1' do
-    expect(subject.send(:posts_counter)).to eq(subject.author.increment!(:posts_counter))
-  end
+  it 'check bring recent_five_comments' do
+    user1 = User.new(name: 'Yash', photo: 'https://picsum.photos/200/300', bio: 'I am Yash', posts_counter: 4)
 
-  it 'cannot add post without text' do
-    post = Post.create(title: 'Hello', author: user)
-    expect(post).not_to be_valid
-  end
+    post1 = Post.new(author: user1, title: 'PostTitle1', text: ' Post text 1', comments_counter: 6,
+                     likes_counter: 5)
+    @comment1 = Comment.create!(author: user1, post: post1, text: 'Yash')
+    @comment2 = Comment.create!(author: user1, post: post1, text: 'Yash')
+    @comment3 = Comment.create!(author: user1, post: post1, text: 'Yash')
+    @comment4 = Comment.create!(author: user1, post: post1, text: 'Yash')
+    @comment5 = Comment.create!(author: user1, post: post1, text: 'Yash')
+    @comment6 = Comment.create!(author: user1, post: post1, text: 'Yash')
 
-  it 'cannot add Text that is empty' do
-    post = Post.create(title: 'Congrats', text: '', author: user)
-    expect(post).not_to be_valid
-  end
-
-  it 'cannot add title that is more than 250 characters' do
-    post = Post.create(title: 'a' * 300, text: 'Text', author: user)
-    expect(post).not_to be_valid
+    expect(post1.recent_five_comments).to eq([@comment6, @comment5, @comment4, @comment3, @comment2])
   end
 end
