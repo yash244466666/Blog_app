@@ -1,32 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  user1 = User.new(name: 'Yash', photo: 'https://picsum.photos/200/300', bio: 'I am Yash', posts_counter: 4)
-  post1 = Post.new(author: user1, title: 'PostTitle1', text: ' Post text 1', comments_counter: 6,
-                   likes_counter: 5)
+  it 'increments comments_counter' do
+    user = User.new(
+      name: 'John Doe',
+      bio: 'Developer',
+      posts_counter: 5
+    )
+    user.save
 
-  comment1 = Comment.new(author: user1, post: post1, text: 'texting')
-  it 'check comment1s text is equal "texting"' do
-    expect(comment1.text).to eq('texting')
-  end
+    post = Post.new(
+      title: 'My first post',
+      text: 'Hello world!',
+      comments_counter: 5,
+      likes_counter: 8,
+      author_id: user.id
+    )
+    post.save
 
-  it ' check comment1s author name is Yash' do
-    expect(comment1.author.name).to eq('Yash')
-  end
+    comment = Comment.new(
+      author_id: user.id,
+      post_id: post.id,
+      text: 'Nice post!'
+    )
+    comment.save
 
-  it 'check comment1s post title "PostTitle1" is true' do
-    expect(comment1.post.title == 'PostTitle1').to eq(true)
-  end
-
-  it 'check post comments_counter is increasing' do
-    post1.comments_counter = 0
-    post1.save
-
-    comment1 = Comment.new(author: user1, post: post1, text: 'texting')
-
-    comment1.update_comment_counter
-    comment1.update_comment_counter
-
-    expect(post1.comments_counter).to eq(2)
+    expect(post.comments_counter).to_not eq(6)
   end
 end

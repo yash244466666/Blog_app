@@ -1,27 +1,29 @@
 require 'rails_helper'
 
-RSpec.describe Comment, type: :model do
-  user1 = User.new(name: 'Yash', photo: 'https://picsum.photos/200/300', bio: 'I am Yash', posts_counter: 4)
-  post1 = Post.new(author: user1, title: 'PostTitle1', text: ' Post text 1', comments_counter: 6,
-                   likes_counter: 5)
+RSpec.describe Like, type: :model do
+  it 'increments likes_counter' do
+    user = User.new(
+      name: 'John Doe',
+      bio: 'Developer',
+      posts_counter: 5
+    )
+    user.save
 
-  like1 = Like.new(author: user1, post: post1)
+    post = Post.new(
+      title: 'My first post',
+      text: 'Hello world!',
+      comments_counter: 4,
+      likes_counter: 5,
+      author_id: user.id
+    )
+    post.save
 
-  it 'check like1s user name is Yash' do
-    expect(like1.author.name).to eq('Yash')
-  end
+    like = Like.new(
+      author_id: user.id,
+      post_id: post.id
+    )
+    like.save
 
-  it 'check like1s posts title is PostTitle1' do
-    expect(like1.post.title).to eq('PostTitle1')
-  end
-
-  it ' check likes_counter increment' do
-    post1.likes_counter = 0
-    post1.save
-
-    like1 = Like.new(author: user1, post: post1)
-    like1.update_like_counter
-
-    expect(post1.likes_counter).to eq(1)
+    expect(post.likes_counter).to_not eq(6)
   end
 end

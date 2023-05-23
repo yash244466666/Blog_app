@@ -1,28 +1,25 @@
-<head>
-  <link rel="stylesheet" href="<%= asset_path('application.css') %>">
-</head>
-<div class= "photo-user">
-    <div >
-      <img class='user_img' src= <%= @user.photo %> width="50" height="70"  />
-    </div>
-<div class="user-card">
-<h1><%= @user.name  %></h1>
-<p>Number of posts:  <%= @user.posts_counter %> </p> 
-</div>
-</div>
-<div class="bio">
-<h2>Bio</h2>
-<p><span><%= @user.bio %></p>
-</div>
-<div>
-<% @user.recent_three_posts.each do |post| %>
-<div class="post">
-  <h2>Post :<%= link_to post.title, user_post_path(@user, post) %></h2>
-  <p><%= post.text %> </p>
- <p class="posts-comment-like"> Comments:  <%= post.comments_counter %> Likes:  <%= post.likes_counter %>
-  </p>
-  </div>
-<% end %>
+<h1 class="text-seondary mb-3">Single user</h1>
 
+<%= render "user", user: @user %>
+
+<div class="border border-5 mx-auto w-100 p-3 mb-3">
+  <h2>Bio</h2>
+  <p><%= @user.bio %></p>
 </div>
-<a class="all-posts" href="<%= @user.id %>/posts">See all posts</a>
+
+<div>
+  <% @user.most_recent_posts.each do |post| %>
+    <div class="border border-5 mx-auto w-100 p-3 mb-3">
+      <h2>Post #<%= post.id %></h2>
+      <p><%= post.text %></p>
+
+      <div class="d-flex justify-content-end">
+        <span>Comments: <%= "#{post.comments_counter || 0 } "%></span>
+        <span>, Likes: <%= "#{ post.likes_counter || 0 }"%></span>
+      </div>
+    </div>
+  <% end %> 
+  <div class="text-center mb-3">
+    <%= link_to "See All Posts", user_posts_path(@user), class: "btn btn-outline-secondary" %>
+  </div>
+</div>
