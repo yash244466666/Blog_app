@@ -1,21 +1,9 @@
-<head>
-  <link rel="stylesheet" href="<%= asset_path('application.css') %>">
-</head>
+<h1 class=" mb-3">List of users</h1>
 
-
-<% @users.each do |user| %>
-<div class="main-container">
-  <div class='user_img'>
-          <img src= <%= user.photo %> width="50" height="70"  />
-        </div>
-<div class="user-container">
-
-<h2><%= link_to user.name, user_path(user) %><br></h2>
- <p>
-  
-  Number of posts:  <%= user.posts_counter %>
-   </p>
-   </div>
-   </div>
- 
-<% end %>
+<section class="w-100">
+    <% @users.each do |user| %> 
+        <%= link_to user_path(user) do %>
+       <%= render "user", user: user %>
+       <% end %>
+    <% end %>
+</section>

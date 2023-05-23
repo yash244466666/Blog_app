@@ -1,39 +1,36 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  describe 'GET /users/index' do
-    it 'check if it brings success response' do
-      get users_path
-      expect(response).to be_successful
+  describe 'GET /index' do
+    before(:example) { get '/users' }
+
+    it 'returns http success' do
+      get '/users/index'
+      expect(response).to have_http_status(:ok)
     end
 
-    it 'renders the index template' do
-      get users_path
-      expect(response).to render_template('index')
+    it('is correct template rendered') do
+      expect(response).to render_template(:index)
     end
 
-    it 'check the response body includes correct placeholder text' do
-      get users_path
-      expect(response.body).to include('Here your users list')
+    it('is response body includes correct placeholder text') do
+      expect(response.body).to include('List of users in index method')
     end
   end
 
-  describe 'GET users from /users/:id to show' do
-    user = User.create!(name: 'Yash', photo: 'https://picsum.photos/200/300', bio: 'I am Yash', posts_counter: 4)
+  describe 'GET /show' do
+    before(:example) { get '/users/:user_id' }
 
-    it 'check if it brings success response' do
-      get "/users/#{user.id}"
-      expect(response).to be_successful
+    it 'returns http success' do
+      expect(response).to have_http_status(:ok)
     end
 
-    it 'check the response body includes correct placeholder text' do
-      get "/users/#{user.id}"
-      expect(response.body).to include('<h1>Here your user with id</h1>')
+    it('is correct template rendered') do
+      expect(response).to render_template(:show)
     end
 
-    it 'renders the show template' do
-      get "/users/#{user.id}"
-      expect(response).to render_template('show')
+    it('is response body includes correct placeholder text') do
+      expect(response.body).to include('Single user in show method')
     end
   end
 end
