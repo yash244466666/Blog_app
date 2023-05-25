@@ -4,9 +4,9 @@ RSpec.describe 'Users index page', type: :system do
   describe 'check the content of the index page' do
     before(:each) do
       @user_one = User.create(name: 'Lukman Abdulkarim',
-                              photo: 'https://www.anisearch.de/images/character/cover/full/0/817.webp', bio: 'software engineer', postscounter: 0)
+                              photo: 'https://www.anisearch.de/images/character/cover/full/0/817.webp', bio: 'software engineer')
       @user_two = User.create(name: 'peter', photo: 'https://www.anisearch.de/images/character/cover/full/0/817.webp',
-                              bio: 'software engineer', postscounter: 0)
+                              bio: 'software engineer')
       @user_three = User.create(name: 'Girma Tarekegn',
                                 photo: 'https://www.anisearch.de/images/character/cover/full/0/817.webp', bio: 'software engineer')
     end

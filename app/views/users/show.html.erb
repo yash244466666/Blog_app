@@ -11,6 +11,7 @@
   <% @user.most_recent_posts.each do |post| %>
     <div class="border border-5 mx-auto w-100 p-3 mb-3">
       <h2>Post #<%= post.id %></h2>
+      <p><%= post.title %></p>
       <p><%= post.text %></p>
 
       <div class="d-flex justify-content-end">
@@ -20,6 +21,6 @@
     </div>
   <% end %> 
   <div class="text-center mb-3">
-    <%= link_to "See All Posts", user_posts_path(@user), class: "btn btn-outline-secondary" %>
+    <%= link_to "See all the posts", user_posts_path(@user), class: "btn btn-outline-secondary" %>
   </div>
 </div>

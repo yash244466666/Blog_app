@@ -4,7 +4,7 @@ RSpec.describe 'Posts show page', type: :system do
   describe 'check the content of the show page' do
     before(:each) do
       @user_one = User.create(name: 'Lukman Abdulkarim',
-                              photo: 'https://www.anisearch.de/images/character/cover/full/0/817.webp', bio: 'software engineer', postscounter: 0)
+                              photo: 'https://www.anisearch.de/images/character/cover/full/0/817.webp', bio: 'software engineer')
       @post_one = Post.create(author: @user_one, title: 'Hello', text: 'this is my first post')
       @post_two = Post.create(author: @user_one, title: 'jobs', text: 'I am gonna get a jon in may')
       @comment = Comment.create(post: @post_one, author: @user_one, text: 'hi nice to meet you')

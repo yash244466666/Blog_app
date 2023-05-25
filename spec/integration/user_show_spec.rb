@@ -4,7 +4,7 @@ RSpec.describe 'Test for the user show page', type: :system do
   context ' Check the right content for users show page' do
     before(:each) do
       @new_user = User.create(name: 'Lukman Abdulkarim',
-                              photo: 'https://www.anisearch.de/images/character/cover/full/0/817.webp', bio: 'software engineer', postscounter: 0)
+                              photo: 'https://www.anisearch.de/images/character/cover/full/0/817.webp', bio: 'software engineer')
       @post_one = Post.create(author: @new_user, title: 'Hello', text: 'this is my first post')
       @post_two = Post.create(author: @new_user, title: 'jobs', text: 'I am gonna get a jon in may')
       @post_three = Post.create(author: @new_user, title: 'life', text: 'i will get out of this life')
