@@ -1,3 +1,6 @@
+<p align="center">
+<img src="logo192.png" alt="drawing" width="400"/>
+</p>
 <a name="readme-top"></a>
 
 
@@ -14,14 +17,14 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
+  <!-- - [🚀 Live Demo](#live-demo) -->
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
-  - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
+  <!-- - [Run tests](#run-tests) -->
+  <!-- - [Deployment](#triangular_flag_on_post-deployment) -->
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -56,8 +59,8 @@
 
 
 
-## 🚀 Project documentation <a name="live-demo"></a>
-### Take a look at project's video presentation [Link](https://drive.google.com/file/d/1i_5scFMxo465JgFmNr0Q_FeGjjfV9JUw/view?usp=sharing)
+<!-- ## 🚀 Project documentation <a name="live-demo"></a>
+### Take a look at project's video presentation [Link](https://drive.google.com/file/d/1i_5scFMxo465JgFmNr0Q_FeGjjfV9JUw/view?usp=sharing) -->
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -134,8 +137,7 @@ If you like the project, give it a star ⭐️
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank...
-[Microverse](https://www.microverse.org/) for the oppotunity
+I would like to thank... Microverse for the oppotunity
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
