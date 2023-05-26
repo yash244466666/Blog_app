@@ -1,4 +1,4 @@
-<img align="left" src="logo192.png" alt="drawing" width="400"/>
+<img align="center" src="logo192.png" alt="drawing" width="400"/>
 <a name="readme-top"></a>
 
 
