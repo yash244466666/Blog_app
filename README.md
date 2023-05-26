@@ -134,8 +134,7 @@ If you like the project, give it a star ⭐️
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank...
-[Microverse](https://www.microverse.org/) for the oppotunity
+I would like to thank... Microverse for the oppotunity
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
