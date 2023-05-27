@@ -14,5 +14,5 @@ class Api::V1::PostsController < Api::V1::ApplicationController
 
   def find_user_prams
     @user = User.find(params[:user_id])
-  end
+  end
 end
