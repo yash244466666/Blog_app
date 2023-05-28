@@ -106,6 +106,12 @@ rails s
 - LinkedIn: [Yash Solo](https://www.linkedin.com/in/yash-solo)
 - Twitter: [Yash Solo](https://twitter.com/yash_solo000)
 
+👤 **Lukman Abdulkarim**
+
+- GitHub: [@Lukman](https://github.com/lukman155)
+- Twitter: [@Luk, A man](https://twitter.com/lukmanabdulka18)
+- LinkedIn: [Lukman Abdulkarim](https://www.linkedin.com/in/lukmanbaba/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
